@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QUADRA</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Inter', Arial, sans-serif;
+    }
+
+    :root {
+        --white: #ffffff;
+        --grey: #a0a0a0;
+        --line: #3a3a3a;
+    }
+
+    body {
+        background: linear-gradient(90deg, #000000 0%, #212121 50%, #000000 100%);
+        background-attachment: fixed;
+        color: var(--white);
+    }
+
+    /* NAVBAR */
+    .navbar {
+        position: fixed;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 1000;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: fit-content;
+        background-color: #00000099;
+        backdrop-filter: blur(8px);
+        padding: 12px 40px;
+        border-radius: 50px;
+        border: 1px solid var(--white);
+    }
+
+    .nav-links {
+        list-style: none;
+        display: flex;
+        gap: 35px;
+    }
+
+    .nav-links a {
+        color: var(--grey);
+        text-decoration: none;
+        font-size: 14px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+    }
+
+    .nav-links a:hover {
+        color: var(--white);
+    }
+
+    /* SHARED */
+    .tagline {
+        font-size: 12px;
+        letter-spacing: 6px;
+        text-transform: uppercase;
+        color: var(--grey);
+        margin-bottom: 20px;
+    }
+
+    .section-header {
+        text-align: center;
+        margin-bottom: 70px;
+    }
+
+    .section-header .tagline {
+        margin-bottom: 15px;
+    }
+
+    .section-header h2 {
+        font-family: 'Playfair Display', serif;
+        font-size: clamp(32px, 4vw, 52px);
+        font-weight: 600;
+    }
+
+    /* HERO */
+    .hero {
+        min-height: 100vh;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+        gap: 40px;
+        padding: 120px 8% 60px;
+    }
+
+    .hero-text h1 {
+        font-family: 'Playfair Display', serif;
+        font-size: clamp(56px, 8vw, 110px);
+        font-weight: 700;
+        line-height: 1;
+        letter-spacing: 8px;
+        margin-bottom: 15px;
+    }
+
+    .hero-text h2 {
+        font-family: 'Playfair Display', serif;
+        font-size: clamp(18px, 2.2vw, 26px);
+        font-weight: 400;
+        font-style: italic;
+        color: var(--grey);
+        margin-bottom: 25px;
+    }
+
+    .hero-text .desc {
+        font-weight: 300;
+        font-size: 16px;
+        line-height: 1.9;
+        color: #c9c9c9;
+        max-width: 460px;
+    }
+
+    .hero-image {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .hero-image img {
+        width: 100%;
+        max-width: 380px;
+        height: auto;
+        display: block;
+    }
+
+    /* PRODUCTS */
+    .products {
+        padding: 120px 8%;
+        border-top: 1px solid var(--line);
+    }
+
+    .product-card {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 50px;
+        border: 1px solid var(--line);
+        background: #00000066;
+    }
+
+    .product-card h3 {
+        font-family: 'Playfair Display', serif;
+        font-size: 36px;
+        font-weight: 600;
+        margin-bottom: 8px;
+    }
+
+    .product-card .type {
+        font-size: 12px;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        color: var(--grey);
+        margin-bottom: 25px;
+    }
+
+    .product-card .desc {
+        font-weight: 300;
+        font-size: 16px;
+        line-height: 1.9;
+        color: #c9c9c9;
+        margin-bottom: 20px;
+    }
+
+    .block-title {
+        font-size: 11px;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        color: var(--grey);
+        margin: 35px 0 5px;
+    }
+
+    .row {
+        display: flex;
+        justify-content: space-between;
+        gap: 30px;
+        padding: 16px 0;
+        border-bottom: 1px solid var(--line);
+    }
+
+    .row:first-of-type {
+        border-top: 1px solid var(--line);
+    }
+
+    .row span {
+        font-size: 11px;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: var(--grey);
+        white-space: nowrap;
+        padding-top: 4px;
+    }
+
+    .row p {
+        font-family: 'Playfair Display', serif;
+        font-size: 17px;
+        text-align: right;
+        line-height: 1.5;
+    }
+
+    .row p small {
+        display: block;
+        font-family: 'Inter', sans-serif;
+        font-size: 13px;
+        font-weight: 300;
+        color: var(--grey);
+        margin-top: 4px;
+    }
+
+    /* ABOUT */
+    .about {
+        padding: 120px 8%;
+        border-top: 1px solid var(--line);
+    }
+
+    .about-content {
+        display: grid;
+        grid-template-columns: 1.2fr 1fr;
+        gap: 80px;
+        align-items: start;
+        max-width: 1100px;
+        margin: 0 auto;
+    }
+
+    .about-text p {
+        font-weight: 300;
+        font-size: 16px;
+        line-height: 2;
+        color: #c9c9c9;
+        margin-bottom: 24px;
+    }
+
+    .about-details {
+        border: 1px solid var(--line);
+        background: #00000066;
+    }
+
+    .detail {
+        padding: 24px 28px;
+        border-bottom: 1px solid var(--line);
+    }
+
+    .detail:last-child {
+        border-bottom: none;
+    }
+
+    .detail span {
+        display: block;
+        font-size: 11px;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        color: var(--grey);
+        margin-bottom: 8px;
+    }
+
+    .detail p {
+        font-family: 'Playfair Display', serif;
+        font-size: 20px;
+    }
+    .detail .members {
+    font-size: 18px;
+    line-height: 1.8;
+    }
+
+    /* MOBILE */
+    @media (max-width: 800px) {
+        .hero {
+            grid-template-columns: 1fr;
+            text-align: center;
+            padding-top: 110px;
+        }
+        .hero-text .desc { margin: 0 auto; }
+        .hero-image { order: -1; }
+        .nav-links { gap: 20px; }
+        .navbar { padding: 10px 24px; }
+        .products, .about { padding: 80px 8%; }
+        .product-card { padding: 30px 24px; }
+        .about-content {
+            grid-template-columns: 1fr;
+            gap: 50px;
+        }
+    }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#products">Products</a></li>
+            <li><a href="#about">About</a></li>
+        </ul>
+    </nav>
+
+    <!-- HOME -->
+    <section class="hero" id="home">
+        <div class="hero-text">
+            <p class="tagline">Jean Paul Gaultier</p>
+            <h1>QUADRA</h1>
+            <h2>Four minds. One scent.</h2>
+            <p class="desc">
+                Intense, sophisticated, and irresistibly seductive. Le Male
+                Le Parfum is a commanding scent for the modern man, with
+                deep warmth, smooth spices, and creamy vanilla.
+            </p>
+        </div>
+
+        <div class="hero-image">
+            <img src="https://i.imgur.com/S3Lq0aw.png" alt="Jean Paul Gaultier Le Male Le Parfum bottle">
+        </div>
+    </section>
+
+    <!-- PRODUCTS -->
+    <section class="products" id="products">
+        <div class="section-header">
+            <p class="tagline">Our Product</p>
+            <h2>The Fragrance</h2>
+        </div>
+
+        <div class="product-card">
+            <h3>Le Male Le Parfum</h3>
+            <p class="type">Jean Paul Gaultier &bull; Parfum &bull; 125ml</p>
+
+            <p class="desc">
+                A bold evolution of the legendary Le Male. This powerful parfum
+                concentration enhances the iconic DNA with deeper warmth, smooth
+                spices, and creamy vanilla, creating a commanding scent for the
+                modern man.
+            </p>
+            <p class="desc">
+                Dressed in its striking black-and-gold officer's uniform bottle,
+                it embodies authority, charisma, and refined masculinity.
+            </p>
+
+            <p class="block-title">Fragrance Notes</p>
+            <div class="row">
+                <span>Top</span>
+                <p>Cardamom<small>A rich and spicy opening that delivers warmth and instant intrigue.</small></p>
+            </div>
+            <div class="row">
+                <span>Middle</span>
+                <p>Lavender, Iris<small>Classic lavender with powdery iris for smooth sophistication.</small></p>
+            </div>
+            <div class="row">
+                <span>Base</span>
+                <p>Vanilla, Oriental Woods<small>Creamy vanilla with warm woody accords for a sensual, long-lasting trail.</small></p>
+            </div>
+
+            <p class="block-title">Why You'll Love It</p>
+            <div class="row">
+                <span>Intensity</span>
+                <p>Deeper &amp; more intense<small>A richer, smoother take on the original Le Male.</small></p>
+            </div>
+            <div class="row">
+                <span>Performance</span>
+                <p>Long-lasting<small>Strong projection and impressive longevity.</small></p>
+            </div>
+            <div class="row">
+                <span>Style</span>
+                <p>Elegant masculinity<small>Warm spices balanced with creamy sweetness.</small></p>
+            </div>
+
+            <p class="block-title">Perfect For</p>
+            <div class="row">
+                <span>Occasions</span>
+                <p>Date nights &amp; special events</p>
+            </div>
+            <div class="row">
+                <span>Season</span>
+                <p>Autumn &amp; winter</p>
+            </div>
+            <div class="row">
+                <span>Time</span>
+                <p>Evenings, after dark</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="about" id="about">
+        <div class="section-header">
+            <p class="tagline">The Brand</p>
+            <h2>About Quadra</h2>
+        </div>
+
+        <div class="about-content">
+            <div class="about-text">
+                <p>
+                    Quadra comes from the Latin word for four, and it represents
+                    the four members behind this project. Each of us brings a
+                    different idea, and together we created one brand with a
+                    single clear identity.
+                </p>
+                <p>
+                    This commercial presents Jean Paul Gaultier Le Male Le
+                    Parfum, a fragrance that blends authority, elegance, and
+                    charm in every spray.
+                </p>
+                <p>
+                    Simple in design and bold in character, Quadra shows that
+                    true elegance does not need to be loud.
+                </p>
+            </div>
+
+            <div class="about-details">
+                <div class="detail">
+                    <span>Brand</span>
+                    <p>Quadra</p>
+                </div>
+                <div class="detail">
+                    <span>Created By</span>
+                    <p class="members">
+                        Alexander Pones<br>
+                        Lander Tarre<br>
+                        Ishan Rei Calomia<br>
+                        John Cedrick Santos
+                    </p>
+                </div>
+                <div class="detail">
+                    <span>Featured Product</span>
+                    <p>JPG Le Male Le Parfum</p>
+                </div>
+                <div class="detail">
+                    <span>Size</span>
+                    <p>125ml</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>
